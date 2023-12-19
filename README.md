@@ -1,28 +1,28 @@
 # prueba-tecnica
 
-parte 1:
+parte 1: <br/>
 el archivo sql esta en: php-apirest/db/QueryPersonas.sql
 
-parte 2:
-la apirest esta en: php-apirest/api/v1
-los endpoints son:
-GET    - php-apirest/api/v1/personas
-GET    - php-apirest/api/v1/personas?id={id}
-POST   - php-apirest/api/v1/personas
-PUT    - php-apirest/api/v1/personas?id={id}
-DELETE - php-apirest/api/v1/personas?id={id}
+parte 2: <br/>
+la apirest esta en: php-apirest/api/v1 <br/> <br/>
+los endpoints son:  <br/>
+GET    - php-apirest/api/v1/personas <br/>
+GET    - php-apirest/api/v1/personas?id={id} <br/>
+POST   - php-apirest/api/v1/personas <br/>
+PUT    - php-apirest/api/v1/personas?id={id} <br/>
+DELETE - php-apirest/api/v1/personas?id={id} <br/>
 
-parte 3:
+parte 3: <br/>
 para consumir la api esta en: php-apirest/consumo-apirest
 
 Los tres puntos no son perfectos los hice lo mejor que pude con el cononimiento que tenia y que fui adquiriendo para entregarlo, tienen errores y se pueden mejorar bastante
 
-Nota:
+Nota: <br/>
 A la hora de consumir la api por medio de la pagina web el metodo actualizar no funciona, investigare para solucionarlo mas adelante 
 
-Nota 2:
-el ambiente de desarrollo fue con:
--vs code
--xampp
--postman
+Nota 2: <br/>
+el ambiente de desarrollo fue con: <br/>
+-vs code <br/>
+-xampp <br/>
+-postman <br/>
 -postgresql
