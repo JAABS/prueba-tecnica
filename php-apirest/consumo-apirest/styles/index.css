@@ -1,0 +1,137 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Montserrat";
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+.contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50%;
+    background-color: beige;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+/* Estilos formulario Agregar personas*/
+body main .contenido form{
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.lbl_nombre, .lbl_edad, .inp_nombre, .inp_edad{
+    margin: 0.5rem 0px 0.5rem 0px;
+}
+
+.lbl_titulo{
+    margin: 0px 0px 1.5rem 0px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.btn_guardar{
+    margin-top: 1rem;
+}
+
+/* Estilos Tabla para mostrar las personas*/
+
+body main .contenido section{
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    
+    width: 65%;
+    border-collapse: collapse;
+    height: 100%;
+    margin-left: 2em;
+}
+
+th, td{
+    padding: 20px;
+    border-spacing: 20px;
+    text-align: left;
+}
+
+thead{
+    display: block;
+    background-color: green;
+    border-bottom: 2px solid black;
+    color: white;
+}
+tbody{
+  height: 70%;
+  width: auto;
+  display: block;
+  overflow-y: scroll;
+}
+
+tr:nth-child(even){
+    background-color: grey;
+}
+
+tr:hover td{
+    background-color: #77EB53;
+}
+
+
+/* Estilos para el formulario modificar*/
+
+#contenido_form_modificar{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: beige;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: absolute;
+    
+    
+}
+
+#contenido_form_modificar form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+body main #contenido_form_modificar form .lbl_nombre, .lbl_edad, .inp_nombre, .inp_edad{
+    margin: 0.5rem 0px 0.5rem 0px;
+    width: 50%;
+}
+
+body main #contenido_form_modificar form .lbl_titulo{
+    margin: 0px 0px 1em 0px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+body main #contenido_form_modificar form .btn_guardar{
+    margin-top: 1rem;
+}
+
+
+
+
+
+

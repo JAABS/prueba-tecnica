@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir api-rest</title>
+    <link rel="stylesheet" href="../styles/index.css" />
+</head>
+<body>
+    <main>
+        <div class="contenido">
+            <form id="form_agregar">
+                <label class="lbl_titulo">Agregar una persona</label>
+                <label class="lbl_nombre">Nombre:</label>
+                <input id="inp_nombre" type="text" name="nombre" />
+                <label class="lbl_edad">Edad:</label>
+                <input id="inp_edad" type="text" name="edad" />
+                <button id="btn_guardar" type="submit">Guardar</button>
+            </form>
+            <section>
+                <table id="tabla_personas">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenido_tabla">
+                        
+                    </tbody>
+                </table>
+                <div>
+                    <button id="btn_mostrar_personas">Mostrar todas las personas</button>
+                    <button id="btn_eliminar_datos_tabla">Buscar una persona</button>
+                </div>
+            </section>
+        </div>
+            <div id="contenido_form_modificar" style="display: none;">
+                    <label class="lbl_titulo">Actualizar</label>
+                    <br>
+                    <label class="lbl_id">id:</label>
+                    <br>
+                    <input id="inp_id_actualizar" type="numeric" name="persona_id" readonly/>
+                <form id="form_actualizar">
+                    <label class="lbl_nombre">Nombre:</label>
+                    <input id="inp_nombre_actualizar" type="text" name="nombre" />
+                    <label class="lbl_edad">Edad:</label>
+                    <input id="inp_edad_actualizar" type="numeric" name="edad" />
+                    <button id="btn_guardar_actualizar" type="submit">Guardar</button>
+                    <button id="btn_cancelar_actualizar">Cancelar</button>
+                </form>
+            </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
