@@ -50,7 +50,6 @@ if(count($rutas_array) == 4 && isset($_SERVER["REQUEST_METHOD"])){
     // Peticion PUT al endpoint php-apirest/api/v1/personas?id={id}
     if($_SERVER["REQUEST_METHOD"] == "PUT"){
         $datos = array();
-        echo "<pre>"; print_r(file_get_contents("php://input")); echo "<pre>";
         parse_str(file_get_contents("php://input"), $datos);
         
         $registro = new PersonasController();
