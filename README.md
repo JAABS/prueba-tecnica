@@ -19,7 +19,7 @@ url para ver la pagina web:  php-apirest/consumo-apirest/views/index.html
 Los tres puntos no son perfectos los hice lo mejor que pude con el cononimiento que tenia y que fui adquiriendo para entregarlo, tienen errores y se pueden mejorar bastante
 
 Nota: <br/>
-A la hora de consumir la api por medio de la pagina web el metodo actualizar no funciona, investigare para solucionarlo mas adelante 
+A la hora de consumir la api por medio de la pagina web el metodo actualizar y agregar no funcionan, investigare para solucionarlo mas adelante 
 
 Nota 2: <br/>
 el ambiente de desarrollo fue con: <br/>
