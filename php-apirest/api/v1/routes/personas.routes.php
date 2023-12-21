@@ -1,31 +1,20 @@
 <?php
-
+// convierte en un arreglo las rutas de la url
 $rutas_array = explode("/", $_SERVER["REQUEST_URI"]);
 $rutas_array = array_filter($rutas_array);
-//$id = explode("?", $rutas_array[4]);
-//$id = array_filter($id)[1];
-
-// Cuando no se hace una peticion en la api manda un 404
-if(count($rutas_array) == 1){
-    $json = array(
-        "status"=> 404,
-        "result"=> "Not found"
-    );
-    echo json_encode($json, http_response_code($json["status"]));
-    return;
-}
 
 require_once "./api/v1/controller/personas.controller.php";
 
-// Cuando se hace una peticion ala api
+// Cuando se hace una peticion ala api si la ruta final de la url es: /personas
+
 if(count($rutas_array) == 4 && isset($_SERVER["REQUEST_METHOD"])){
 
      // Peticion GET al endpoint php-apirest/api/v1/personas?id={id}
+     // verifica si se hace una peticion GET y comprueba si hay una variable llamada id en la url
      if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])){
         
-        $id = $_GET["id"];
         $registro = new PersonasController();
-        $registro->mostrar_un_dato($id);
+        $registro->mostrar_un_dato($_GET["id"]);
        
        return;
     }
@@ -33,27 +22,32 @@ if(count($rutas_array) == 4 && isset($_SERVER["REQUEST_METHOD"])){
     // Peticion GET al endpoint php-apirest/api/v1/personas
    if($_SERVER["REQUEST_METHOD"] == "GET"){
        $obtener_registros = new PersonasController();
-       
        $obtener_registros->mostrar_datos($rutas_array[4]);
       
        return;
     }
    
-
     // Peticion POST al endpoint php-apirest/api/v1/personas
+    // Se obtiene el body json y se deserializa y la cabecera Content-Type 
+    // y se manda para validar
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+        $json = file_get_contents("php://input");
+        $datos = json_decode($json);
+        $cabecera = getallheaders();
         $registro = new PersonasController();
-        $registro->guardar_registro([$_POST["nombre"], $_POST["edad"]]);
+        $registro->guardar_registro($datos, $cabecera["Content-Type"]);
         return;
     }
 
     // Peticion PUT al endpoint php-apirest/api/v1/personas?id={id}
+    // Se obtiene el id de la url, el body en json para deserializarlo y la cabecera Content-Type
+    // y se manda para validar
     if($_SERVER["REQUEST_METHOD"] == "PUT"){
-        $datos = array();
-        parse_str(file_get_contents("php://input"), $datos);
-        
+        $json = file_get_contents("php://input");
+        $datos = json_decode($json);
+        $cabecera = getallheaders();
         $registro = new PersonasController();
-        $registro->actualizar_registro([$datos["nombre"], intval($datos["edad"])],$_GET["id"]);
+        $registro->actualizar_registro($datos, $cabecera["Content-Type"], $_GET["id"]);
         return;
     }
 

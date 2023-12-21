@@ -8,7 +8,7 @@ class Persona extends Connection{
     // Mostrar todas las personas de la base de datos de la tabla personas
     public function mostrar_datos_personas(){
         try{
-            $sql = "select * from personas";
+            $sql = "SELECT * FROM personas";
             $statememt = Connection::get_connection()->prepare($sql);
             $statememt->execute();
             $result = $statememt->fetchAll(PDO::FETCH_ASSOC);
@@ -23,7 +23,7 @@ class Persona extends Connection{
     public function mostrar_dato_persona($id){
         try{
             
-            $sql = "select * from personas Where persona_id = :id";
+            $sql = "SELECT * FROM personas WHERE persona_id = :id";
             $statememt = Connection::get_connection()->prepare($sql);
             $statememt->bindParam(":id", $id, PDO::PARAM_INT);
             $statememt->execute();
@@ -37,10 +37,10 @@ class Persona extends Connection{
     // Guardar los datos de una persona en la tabla personas
     public function guardar_persona($datos){
         try{
-            $sql = "insert into personas (nombre, edad) values(:nombre, :edad)";
+            $sql = "INSERT INTO personas (nombre, edad) VALUES(:nombre, :edad)";
             $statememt = Connection::get_connection()->prepare($sql);
-            $statememt->bindParam(":nombre", $datos[0], PDO::PARAM_STR);
-            $statememt->bindParam(":edad", $datos[1], PDO::PARAM_INT);
+            $statememt->bindParam(":nombre", $datos->{"nombre"}, PDO::PARAM_STR);
+            $statememt->bindParam(":edad", $datos->{"edad"}, PDO::PARAM_INT);
             $statememt->execute();
             return true;
         }catch(PDOException $error){
@@ -53,8 +53,8 @@ class Persona extends Connection{
         try{
             $sql = "UPDATE personas SET nombre = :nombre, edad = :edad WHERE persona_id = :id";
             $statememt = Connection::get_connection()->prepare($sql);
-            $statememt->bindParam(":nombre", $datos[0], PDO::PARAM_STR);
-            $statememt->bindParam(":edad", $datos[1], PDO::PARAM_INT);
+            $statememt->bindParam(":nombre", $datos->{"nombre"}, PDO::PARAM_STR);
+            $statememt->bindParam(":edad", $datos->{"edad"}, PDO::PARAM_INT);
             $statememt->bindParam(":id", $id, PDO::PARAM_INT);
             $statememt->execute();
             return true;

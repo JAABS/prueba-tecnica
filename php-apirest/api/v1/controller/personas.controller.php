@@ -8,16 +8,15 @@ class PersonasController extends Persona{
     public function index(){
         include "./api/v1/routes/personas.routes.php";
     }
+
     // Controlador para las peticiones GET|POST|PUT|DELETE y con un pequeño manejador de errores
     // Mostrar todos los registros 
     public function mostrar_datos($tabla){
         if($tabla == "personas"){
-            
-            
             $datos = Persona::mostrar_datos_personas();
-            echo json_encode($datos);
-            
 
+            header("Content-Type: application/json");
+            echo json_encode($datos);
         }else{
 
             $json = array(
@@ -31,10 +30,11 @@ class PersonasController extends Persona{
     // Mostrar un registro en especifico
     public function mostrar_un_dato($id){
             if(is_numeric($id)){
-
+                
                 $dato = array(Persona::mostrar_dato_persona($id));
 
-            echo json_encode($dato);
+                header("Content-Type: application/json");
+                echo json_encode($dato);
             }else{
                 $json = array(
                     "status"=> 400,
@@ -45,14 +45,16 @@ class PersonasController extends Persona{
     }
 
     // Guardar registro
-    public function guardar_registro($datos){
-        if(is_string($datos[0]) && is_numeric($datos[1])){
-            
+    // Se validan los datos para poder realizar la operacion
+    public function guardar_registro($datos, $cabecera){
+        if(is_string($datos->{"nombre"}) && is_numeric($datos->{"edad"}) && $cabecera == "application/json"){
             $registro = Persona::guardar_persona($datos);
 
+            header("Content-Type: application/json");
             echo json_encode($json = array(
                 "status"=> 201,
-                "result"=> "Created"
+                "result"=> "Created",
+                "data"=> $datos
             ), http_response_code($json["status"]));
             
         }else{
@@ -65,14 +67,17 @@ class PersonasController extends Persona{
     }
 
     // Actualizar registro por medio de su (id)
-    public function actualizar_registro($datos, $id){
+    // Se validan los datos para poder realizar la operacion
+    public function actualizar_registro($datos, $cabecera, $id){
         
-        if(is_string($datos[0]) && is_numeric($datos[1]) && is_numeric($id)){
+        if(is_string($datos->{"nombre"}) && is_numeric($datos->{"edad"}) && $cabecera == "application/json" && is_numeric($id)){
             $registro = Persona::actualizar_registro_persona($datos, $id);
 
+            header("Content-Type: application/json");
             echo json_encode($json = array(
                 "status"=> 200,
-                "result"=> "Success"
+                "result"=> "Update success",
+                "data"=> $datos
             ), http_response_code($json["status"]));
         }else{
             $json = array(
@@ -88,6 +93,8 @@ class PersonasController extends Persona{
         if(is_numeric($id)){
 
             $registro = Persona::eliminar_registro_persona($id);
+
+            header("Content-Type: application/json");
             echo json_encode($json = array(
                 "status"=> 200,
                 "result"=> "Success"
@@ -100,9 +107,6 @@ class PersonasController extends Persona{
             echo json_encode($json, http_response_code($json["status"]));
         }
     }
-
-
-    
 }
 
 

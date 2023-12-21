@@ -47,12 +47,14 @@ function obtener_persona(id){
 function agregar_persona(){
     
     const datos = new FormData(form_agregar)
-    console.log(...datos)
-    console.log(datos.get("nombre"))
-    console.log(typeof(datos.get("edad")))
+    const json = JSON.stringify(datos)
+    console.log(json)
     fetch("http://localhost/php-apirest/api/v1/personas", {
         method:"POST",
-        body: datos
+        body: datos,
+        headers:{
+            "Content-Type": "application/json"
+        }
     })
     .then(response => response.json())
     .catch(error => console.log(error))
@@ -64,7 +66,10 @@ function actualizar_persona(){
     const id = inp_id_actualizar.value
     fetch(`http://localhost/php-apirest/api/v1/personas?id=${id}`, {
         method:'PUT',
-        body: datos
+        body: JSON.stringify(datos),
+        headers:{
+            "Content-Type": "application/json"
+        }
     })
     .then(response => response.json())
     .catch(error => console.log(error))
