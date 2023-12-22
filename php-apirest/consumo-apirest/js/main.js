@@ -44,14 +44,19 @@ function obtener_persona(id){
     })   
 }
 
-function agregar_persona(){
+// Obtenemos los datos desde el formulario de agregar persona
+// Pasamos los valores a un objeto para convertilo en json y mandarlo para la api
+async function agregar_persona(){
     
-    const datos = new FormData(form_agregar)
+    const form = new FormData(form_agregar)
+    let datos = new Object()
+    datos.nombre = form.get("nombre")
+    datos.edad = form.get("edad")
     const json = JSON.stringify(datos)
     console.log(json)
     fetch("http://localhost/php-apirest/api/v1/personas", {
         method:"POST",
-        body: datos,
+        body: json,
         headers:{
             "Content-Type": "application/json"
         }
@@ -60,20 +65,24 @@ function agregar_persona(){
     .catch(error => console.log(error))
 }
 
-// No funciona la opcion de actualizar
+// Obtenemos los datos desde el formulario de agregar persona
+// Pasamos los valores a un objeto para convertilo en json y mandarlo para la api
 function actualizar_persona(){
-    const datos = new FormData(form_actualizar)
+    const form = new FormData(form_actualizar)
+    let datos = new Object()
+    datos.nombre = form.get("nombre")
+    datos.edad = form.get("edad")
+    const json = JSON.stringify(datos)
     const id = inp_id_actualizar.value
     fetch(`http://localhost/php-apirest/api/v1/personas?id=${id}`, {
         method:'PUT',
-        body: JSON.stringify(datos),
+        body: json,
         headers:{
             "Content-Type": "application/json"
         }
     })
     .then(response => response.json())
     .catch(error => console.log(error))
-    
 }
 
 function eliminar_persona(id){
@@ -107,11 +116,9 @@ btn_obtener_Personas.addEventListener("click", obtener_personas)
 btn_eliminar_datos.addEventListener("click", eliminar_datos_tabla)
 btn_cancelar_actualizar.addEventListener("click", cerrar_modificar_persona)
 form_agregar.addEventListener("submit", (e) => {
-    e.preventDefault()
     agregar_persona()
 })
 form_actualizar.addEventListener("submit", (e) =>{
-    e.preventDefault()
     actualizar_persona()
 })
 
